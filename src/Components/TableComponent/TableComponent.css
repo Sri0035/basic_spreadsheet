@@ -1,0 +1,96 @@
+/* TableComponent.css */
+.table-container {
+  width: 80%;
+  overflow-x: auto;
+  align-items: center;
+  margin: auto;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 75%;
+  font-family: Arial, sans-serif;
+  table-layout: fixed;
+  border: 1px solid #ddd;
+}
+
+.row {
+  border: 1px solid #ddd;
+}
+
+.row th,
+.row td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-weight: normal;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.row th {
+  background-color: #f2f2f2;
+}
+
+.row th:first-child,
+.row td:first-child {
+  text-align: left;
+  padding-left: 15px;
+}
+
+.row td input {
+  border: none;
+  width: 100%;
+  padding: 6px;
+  text-align: center;
+  background-color: transparent;
+  outline: none;
+  font-size: 14px;
+}
+
+.row td input:focus {
+  border: 1px solid #3498db;
+}
+
+.expand-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.expanded-row {
+  background-color: #f2f2f2;
+}
+
+.sub-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: -1px;
+}
+
+.sub-row td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: #f2f2f2;
+}
+
+.adjust-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.adjust-button {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
