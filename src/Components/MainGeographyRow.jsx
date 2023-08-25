@@ -24,35 +24,26 @@ const MainGeographyRow = ({ mainGeo, data, setData, productKeys }) => {
   };
 
   const addSubGeography = () => {
-    const newProductColumnName = `Product ${nextProductNumber}`;
-
     const newSubGeo = {
       Geography: newSubGeoName,
-      ...productKeys.reduce((acc, key) => {
-        acc[key] = 0;
-        return acc;
-      }, {}),
-      [newProductColumnName]: 0,
+      "Product 1": 0,
+      "Product 2": 0,
+      "Product 3": 0,
+      [`Product ${productKeys.length + 1}`]: 0,
     };
-
     const updatedMainGeo = {
       ...mainGeo,
       sub_geographies: [...mainGeo.sub_geographies, newSubGeo],
     };
-
-    setNextProductNumber(nextProductNumber + 1); // Increment the next product number
-
     if (newSubGeoName === "") {
       alert("Please enter a name for the new Subgeography");
       return;
     }
-
     setData((prevData) =>
       prevData.map((dataMainGeo) =>
         dataMainGeo === mainGeo ? updatedMainGeo : dataMainGeo
       )
     );
-
     setNewSubGeoEditable(false);
   };
 
@@ -94,13 +85,12 @@ const MainGeographyRow = ({ mainGeo, data, setData, productKeys }) => {
                 onClick={() => setNewSubGeoEditable(true)}
                 icon="plus"
               />
-
-              {mainGeo.Geography}
               <Button
                 className="ui icon button"
                 onClick={handleExpandClick}
                 icon={isExpanded ? "chevron down" : "chevron right"}
               />
+              {mainGeo.Geography}
             </>
           )}
         </Table.Cell>
@@ -119,6 +109,7 @@ const MainGeographyRow = ({ mainGeo, data, setData, productKeys }) => {
           subGeos={mainGeo.sub_geographies}
           setData={setData}
           productKeys={productKeys}
+          Geography={mainGeo.Geography}
         />
       )}
     </React.Fragment>

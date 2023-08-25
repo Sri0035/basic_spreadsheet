@@ -1,27 +1,34 @@
 import React from "react";
 import { Input, Table } from "semantic-ui-react";
 
-const SubGeographyRow = ({ subGeos, setData, productKeys }) => {
+const SubGeographyRow = ({ subGeos, setData, productKeys, Geography }) => {
   const handleProductChange = (e, subGeoIndex, productKey) => {
     const newValue = parseInt(e.target.value, 10) || 0;
 
-    const updatedSubGeos = subGeos.map((subGeo, index) => {
-      if (index === subGeoIndex) {
-        return {
-          ...subGeo,
-          [productKey]: newValue,
-        };
-      }
-      return subGeo;
-    });
-
     setData((prevData) =>
-      prevData.map((mainGeo) => ({
-        ...mainGeo,
-        sub_geographies: mainGeo.sub_geographies.map((subGeo, index) =>
-          index === subGeoIndex ? updatedSubGeos[subGeoIndex] : subGeo
-        ),
-      }))
+      prevData.map((mainGeo, mainGeoIndex) => {
+        // console.log(mainGeo);
+        // console.log("This is geography: " + Geography);
+        if (mainGeo.Geography === Geography) {
+          const updatedSubGeos = mainGeo.sub_geographies.map(
+            (subGeo, index) => {
+              if (index === subGeoIndex) {
+                return {
+                  ...subGeo,
+                  [productKey]: newValue,
+                };
+              }
+              return subGeo;
+            }
+          );
+
+          return {
+            ...mainGeo,
+            sub_geographies: updatedSubGeos,
+          };
+        }
+        return mainGeo;
+      })
     );
   };
 
