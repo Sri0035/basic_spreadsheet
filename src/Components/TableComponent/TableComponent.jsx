@@ -9,6 +9,7 @@ const TableComponent = () => {
   const [newMainGeoEditable, setNewMainGeoEditable] = useState(false);
   const [newMainGeoName, setNewMainGeoName] = useState("");
   const [nextProductNumber, setNextProductNumber] = useState(4);
+  const [mainGeoTotal, setMainGeoTotal] = useState({});
 
   const addMainGeography = () => {
     const newMainGeo = {
@@ -80,6 +81,8 @@ const TableComponent = () => {
               data={data}
               setData={setData}
               productKeys={productKeys}
+              mainGeoTotal={mainGeoTotal}
+              setMainGeoTotal={setMainGeoTotal}
             />
           ))}
           <Table.Row>
