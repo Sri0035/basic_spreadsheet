@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import jsonData from "../../assets/data.json";
 import MainGeographyRow from "../MainGeographyRow";
 import { Button, Input, Table } from "semantic-ui-react";
@@ -8,6 +8,7 @@ const TableComponent = () => {
   const [data, setData] = useState(jsonData);
   const [newMainGeoEditable, setNewMainGeoEditable] = useState(false);
   const [newMainGeoName, setNewMainGeoName] = useState("");
+  const [nextProductNumber, setNextProductNumber] = useState(4);
 
   const addMainGeography = () => {
     const newMainGeo = {
@@ -21,24 +22,26 @@ const TableComponent = () => {
     setNewMainGeoEditable(false);
   };
 
-  const adjustTotals = () => {
-    const adjustedData = data.map((mainGeo) => {
-      const total = mainGeo.sub_geographies.reduce(
-        (acc, subGeo) =>
-          acc + subGeo["Product 1"] + subGeo["Product 2"] + subGeo["Product 3"],
-        0
-      );
+  const addProductColumn = () => {
+    const newProductColumnName = `Product ${nextProductNumber}`;
 
-      return {
+    setNextProductNumber(nextProductNumber + 1); // Increment the next product number
+
+    setData((prevData) =>
+      prevData.map((mainGeo) => ({
         ...mainGeo,
-        ["Product 1"]: total,
-        ["Product 2"]: total,
-        ["Product 3"]: total,
-      };
-    });
-
-    setData(adjustedData);
+        [newProductColumnName]: 0,
+      }))
+    );
   };
+
+  const productKeys = [
+    ...new Set(
+      data.flatMap((mainGeo) =>
+        Object.keys(mainGeo).filter((key) => key.includes("Product"))
+      )
+    ),
+  ];
 
   return (
     <div className="table-container">
@@ -63,9 +66,9 @@ const TableComponent = () => {
               )}
               Product/Geography
             </th>
-            <th>Product 1</th>
-            <th>Product 2</th>
-            <th>Product 3</th>
+            {productKeys.map((productKey) => (
+              <th key={productKey}>{productKey}</th>
+            ))}
             <th>Total</th>
           </tr>
         </thead>
@@ -76,26 +79,25 @@ const TableComponent = () => {
               mainGeo={mainGeo}
               data={data}
               setData={setData}
+              productKeys={productKeys}
             />
           ))}
           <Table.Row>
             <Table.Cell>Total</Table.Cell>
-            <Table.Cell>
-              {data.reduce((sum, mainGeo) => sum + mainGeo["Product 1"], 0)}
-            </Table.Cell>
-            <Table.Cell>
-              {data.reduce((sum, mainGeo) => sum + mainGeo["Product 2"], 0)}
-            </Table.Cell>
-            <Table.Cell>
-              {data.reduce((sum, mainGeo) => sum + mainGeo["Product 3"], 0)}
-            </Table.Cell>
+            {productKeys.map((productKey) => (
+              <Table.Cell key={productKey}>
+                {data.reduce((sum, mainGeo) => sum + mainGeo[productKey], 0)}
+              </Table.Cell>
+            ))}
             <Table.Cell>
               {data.reduce(
                 (sum, mainGeo) =>
                   sum +
-                  mainGeo["Product 1"] +
-                  mainGeo["Product 2"] +
-                  mainGeo["Product 3"],
+                  productKeys.reduce(
+                    (productSum, productKey) =>
+                      mainGeo[productKey] + productSum,
+                    0
+                  ),
                 0
               )}
             </Table.Cell>
@@ -103,8 +105,8 @@ const TableComponent = () => {
         </tbody>
       </table>
       <div className="adjust-button-container">
-        <Button className="ui blue button" onClick={adjustTotals}>
-          Adjust Totals
+        <Button className="ui blue button" onClick={addProductColumn}>
+          Add New Product Column
         </Button>
       </div>
     </div>

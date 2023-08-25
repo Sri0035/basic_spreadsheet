@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Input, Table } from "semantic-ui-react";
+import { Input, Table } from "semantic-ui-react";
 
-const SubGeographyRow = ({ subGeos, setData }) => {
+const SubGeographyRow = ({ subGeos, setData, productKeys }) => {
   const handleProductChange = (e, subGeoIndex, productKey) => {
     const newValue = parseInt(e.target.value, 10) || 0;
 
@@ -30,29 +30,20 @@ const SubGeographyRow = ({ subGeos, setData }) => {
       {subGeos.map((subGeo, index) => (
         <Table.Row className="sub-row" key={subGeo.Geography}>
           <Table.Cell>{subGeo.Geography}</Table.Cell>
+          {productKeys.map((productKey) => (
+            <Table.Cell key={productKey}>
+              <Input
+                type="number"
+                value={subGeo[productKey]}
+                onChange={(e) => handleProductChange(e, index, productKey)}
+              />
+            </Table.Cell>
+          ))}
           <Table.Cell>
-            <Input
-              type="number"
-              value={subGeo["Product 1"]}
-              onChange={(e) => handleProductChange(e, index, "Product 1")}
-            />
-          </Table.Cell>
-          <Table.Cell>
-            <Input
-              type="number"
-              value={subGeo["Product 2"]}
-              onChange={(e) => handleProductChange(e, index, "Product 2")}
-            />
-          </Table.Cell>
-          <Table.Cell>
-            <Input
-              type="number"
-              value={subGeo["Product 3"]}
-              onChange={(e) => handleProductChange(e, index, "Product 3")}
-            />
-          </Table.Cell>
-          <Table.Cell>
-            {subGeo["Product 1"] + subGeo["Product 2"] + subGeo["Product 3"]}
+            {productKeys.reduce(
+              (sum, productKey) => sum + subGeo[productKey],
+              0
+            )}
           </Table.Cell>
         </Table.Row>
       ))}

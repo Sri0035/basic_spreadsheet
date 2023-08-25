@@ -2,12 +2,21 @@ import React, { useState, useEffect } from "react";
 import { Button, Input, Table } from "semantic-ui-react";
 import SubGeographyRow from "./SubGeographyRow";
 
-const MainGeographyRow = ({ mainGeo, data, setData }) => {
+const MainGeographyRow = ({ mainGeo, data, setData, productKeys }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [newSubGeoEditable, setNewSubGeoEditable] = useState(false);
   const [newSubGeoName, setNewSubGeoName] = useState("");
+  const [nextProductNumber, setNextProductNumber] = useState(4);
+
+  const calculateAdjustedTotal = (mainGeoData) => {
+    const productKeys = Object.keys(mainGeoData).filter((key) =>
+      key.includes("Product")
+    );
+    return productKeys.reduce((total, key) => total + mainGeoData[key], 0);
+  };
+
   const [adjustedTotal, setAdjustedTotal] = useState(
-    mainGeo["Product 1"] + mainGeo["Product 2"] + mainGeo["Product 3"]
+    calculateAdjustedTotal(mainGeo)
   );
 
   const handleExpandClick = () => {
@@ -15,21 +24,35 @@ const MainGeographyRow = ({ mainGeo, data, setData }) => {
   };
 
   const addSubGeography = () => {
+    const newProductColumnName = `Product ${nextProductNumber}`;
+
     const newSubGeo = {
       Geography: newSubGeoName,
-      "Product 1": 0,
-      "Product 2": 0,
-      "Product 3": 0,
+      ...productKeys.reduce((acc, key) => {
+        acc[key] = 0;
+        return acc;
+      }, {}),
+      [newProductColumnName]: 0,
     };
+
     const updatedMainGeo = {
       ...mainGeo,
       sub_geographies: [...mainGeo.sub_geographies, newSubGeo],
     };
+
+    setNextProductNumber(nextProductNumber + 1); // Increment the next product number
+
+    if (newSubGeoName === "") {
+      alert("Please enter a name for the new Subgeography");
+      return;
+    }
+
     setData((prevData) =>
       prevData.map((dataMainGeo) =>
         dataMainGeo === mainGeo ? updatedMainGeo : dataMainGeo
       )
     );
+
     setNewSubGeoEditable(false);
   };
 
@@ -47,10 +70,10 @@ const MainGeographyRow = ({ mainGeo, data, setData }) => {
   };
 
   useEffect(() => {
-    setAdjustedTotal(
-      mainGeo["Product 1"] + mainGeo["Product 2"] + mainGeo["Product 3"]
-    );
+    setAdjustedTotal(calculateAdjustedTotal(mainGeo));
   }, [mainGeo]);
+
+  console.log(productKeys);
 
   return (
     <React.Fragment key={mainGeo.Geography}>
@@ -71,37 +94,32 @@ const MainGeographyRow = ({ mainGeo, data, setData }) => {
                 onClick={() => setNewSubGeoEditable(true)}
                 icon="plus"
               />
+
+              {mainGeo.Geography}
               <Button
                 className="ui icon button"
                 onClick={handleExpandClick}
                 icon={isExpanded ? "chevron down" : "chevron right"}
               />
-              {mainGeo.Geography}
             </>
           )}
         </Table.Cell>
-        <Table.Cell>
-          <Input
-            value={mainGeo["Product 1"]}
-            onChange={(e) => handleProductChange(e, "Product 1")}
-          />
-        </Table.Cell>
-        <Table.Cell>
-          <Input
-            value={mainGeo["Product 2"]}
-            onChange={(e) => handleProductChange(e, "Product 2")}
-          />
-        </Table.Cell>
-        <Table.Cell>
-          <Input
-            value={mainGeo["Product 3"]}
-            onChange={(e) => handleProductChange(e, "Product 3")}
-          />
-        </Table.Cell>
+        {productKeys.map((productKey) => (
+          <Table.Cell key={productKey}>
+            <Input
+              value={mainGeo[productKey]}
+              onChange={(e) => handleProductChange(e, productKey)}
+            />
+          </Table.Cell>
+        ))}
         <Table.Cell>{adjustedTotal}</Table.Cell>
       </Table.Row>
       {isExpanded && (
-        <SubGeographyRow subGeos={mainGeo.sub_geographies} setData={setData} />
+        <SubGeographyRow
+          subGeos={mainGeo.sub_geographies}
+          setData={setData}
+          productKeys={productKeys}
+        />
       )}
     </React.Fragment>
   );
