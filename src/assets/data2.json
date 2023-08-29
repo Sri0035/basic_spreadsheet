@@ -1,0 +1,62 @@
+[
+  {
+    "Geography": "North America",
+    "Product": "All Products",
+    "SDR": 10000000,
+    "BDR": 3000000,
+    "AE": 2000000,
+    "Total": 16000000,
+    "sub_geographies": [
+      {
+        "Geography": "United States",
+        "Product": "All Products",
+        "SDR": 8000000,
+        "BDR": 2400000,
+        "AE": 1600000,
+        "Total": 12000000
+      },
+      {
+        "Geography": "Canada",
+        "Product": "All Products",
+        "SDR": 2000000,
+        "BDR": 600000,
+        "AE": 400000,
+        "Total": 3000000
+      }
+    ]
+  },
+  {
+    "Geography": "Europe",
+    "Product": "All Products",
+    "SDR": 4000000,
+    "BDR": 500000,
+    "AE": 250000,
+    "Total": 4750000,
+    "sub_geographies": [
+      {
+        "Geography": "United Kingdom",
+        "Product": "All Products",
+        "SDR": 1400000,
+        "BDR": 175000,
+        "AE": 87500,
+        "Total": 1607500
+      },
+      {
+        "Geography": "Germany",
+        "Product": "All Products",
+        "SDR": 1200000,
+        "BDR": 150000,
+        "AE": 75000,
+        "Total": 1425000
+      },
+      {
+        "Geography": "France",
+        "Product": "All Products",
+        "SDR": 1400000,
+        "BDR": 175000,
+        "AE": 87500,
+        "Total": 1607500
+      }
+    ]
+  }
+]

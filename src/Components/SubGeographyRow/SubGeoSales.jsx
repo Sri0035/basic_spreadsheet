@@ -1,7 +1,9 @@
-import React from "react";
-import { Input, Table } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Input, Table, Dropdown } from "semantic-ui-react";
 
-const SubGeographyRow = ({
+const products = ["Product 1", "Product 2", "Product 3"];
+
+const SubGeographySales = ({
   subGeos,
   setData,
   productKeys,
@@ -9,7 +11,7 @@ const SubGeographyRow = ({
   setMainGeoTotal,
   mainGeoTotal,
 }) => {
-  const handleProductChange = (e, subGeoIndex, productKey) => {
+  const handleValueChange = (e, subGeoIndex, productKey) => {
     const newValue = parseInt(e.target.value, 10) || 0;
 
     setData((prevData) =>
@@ -47,30 +49,49 @@ const SubGeographyRow = ({
     );
   };
 
+  const [selectedProduct, setSelectedProduct] = useState("All Products");
+  const handleProductChange = (event, data) => {
+    setSelectedProduct(data.value);
+  };
+
   return (
     <>
       {subGeos.map((subGeo, index) => (
         <Table.Row className="sub-row" key={subGeo.Geography}>
           <Table.Cell>{subGeo.Geography}</Table.Cell>
+          <Table.Cell className="table-dropdown-cell">
+            <div className="dropdown-container">
+              <Dropdown
+                className="dropdown"
+                placeholder="Select Product"
+                options={[
+                  { key: "all", value: "All Products", text: "All Products" },
+                  ...products.map((product) => ({
+                    key: product,
+                    value: product,
+                    text: product,
+                  })),
+                ]}
+                selection
+                value={selectedProduct}
+                onChange={handleProductChange}
+              />
+            </div>
+          </Table.Cell>
           {productKeys.map((productKey) => (
             <Table.Cell key={productKey}>
               <Input
+                style={{ border: "none", boxShadow: "none", padding: "0px" }}
                 type="number"
                 value={subGeo[productKey]}
-                onChange={(e) => handleProductChange(e, index, productKey)}
+                onChange={(e) => handleValueChange(e, index, productKey)}
               />
             </Table.Cell>
           ))}
-          <Table.Cell>
-            {productKeys.reduce(
-              (sum, productKey) => sum + subGeo[productKey],
-              0
-            )}
-          </Table.Cell>
         </Table.Row>
       ))}
     </>
   );
 };
 
-export default SubGeographyRow;
+export default SubGeographySales;

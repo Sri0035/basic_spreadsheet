@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import jsonData from "../../assets/data.json";
-import MainGeographyRow from "../MainGeographyRow/MainGeographyRow";
-import { Button, Input, Table } from "semantic-ui-react";
-import "./TableComponent.css";
+import jsonData from "../../assets/data2.json";
+import MainGeographyRow from "../MainGeographyRow/MainGeographyRow.jsx";
+import { Button, Input, Table, TableCell } from "semantic-ui-react";
+import MainGeographySales from "../MainGeographyRow/MainGeoSales.jsx";
+import "./NewSalesTable.css";
 
-const TableComponent = () => {
+const NewSalesTable = () => {
   const [data, setData] = useState(jsonData);
   const [newMainGeoEditable, setNewMainGeoEditable] = useState(false);
   const [newMainGeoName, setNewMainGeoName] = useState("");
@@ -36,20 +37,14 @@ const TableComponent = () => {
     );
   };
 
-  const productKeys = [
-    ...new Set(
-      data.flatMap((mainGeo) =>
-        Object.keys(mainGeo).filter((key) => key.includes("Product"))
-      )
-    ),
-  ];
+  const productKeys = ["SDR", "BDR", "AE", "Total"];
 
   return (
     <div className="table-container">
-      <table className="ui table blue striped">
-        <thead>
-          <tr>
-            <th>
+      <Table className="ui table blue striped">
+        <Table.Header>
+          <Table.Row>
+            <Table.Cell>
               {newMainGeoEditable ? (
                 <Input
                   className="input-field"
@@ -66,17 +61,18 @@ const TableComponent = () => {
                   onClick={() => setNewMainGeoEditable(true)}
                 />
               )}
-              Product/Geography
-            </th>
-            {productKeys.map((productKey) => (
-              <th key={productKey}>{productKey}</th>
-            ))}
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
+              Geography
+            </Table.Cell>
+            <Table.Cell>Product</Table.Cell>
+            <Table.Cell>SDR(Inbound)</Table.Cell>
+            <Table.Cell>BDR(Outbound)</Table.Cell>
+            <Table.Cell>AE</Table.Cell>
+            <Table.Cell>Total</Table.Cell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
           {data.map((mainGeo, index) => (
-            <MainGeographyRow
+            <MainGeographySales
               key={mainGeo.Geography}
               mainGeo={mainGeo}
               data={data}
@@ -106,8 +102,8 @@ const TableComponent = () => {
               )}
             </Table.Cell>
           </Table.Row>
-        </tbody>
-      </table>
+        </Table.Body>
+      </Table>
       <div className="adjust-button-container">
         <Button className="ui blue button" onClick={addProductColumn}>
           Add New Product Column
@@ -117,4 +113,4 @@ const TableComponent = () => {
   );
 };
 
-export default TableComponent;
+export default NewSalesTable;

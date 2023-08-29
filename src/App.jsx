@@ -1,14 +1,15 @@
 import React from "react";
-import "./App.css";
-//import DataTable from "./Components/DataTable";
-//import "./Components/DataTable.css";
-import TableComponent from "./Components/TableComponent/TableComponent";
+import TableComponent from "./Components/TableComponent/TableComponent.jsx";
+import TwoTables from "./Components/TwoTables/TwoTables.jsx";
+import NewSalesTable from "./Components/NewSalesTable/NewSalesTable.jsx";
 
 function App() {
   return (
     <div className="App">
-      <h3>ARR Target by Product and Geography in FY"23</h3>
-      <TableComponent />
+      {/* <TwoTables />
+      
+      <TableComponent /> */}
+      <NewSalesTable />
     </div>
   );
 }

@@ -1,0 +1,12 @@
+.table-dropdown-cell {
+  position: relative;
+  overflow: visible; /* Ensure the container is positioned */
+}
+
+/* Adjust the dropdown styles */
+.table-dropdown-cell .dropdown {
+  position: absolute;
+  top: 100%; /* Position it below the cell */
+
+  z-index: 999; /* Bring the dropdown to the front */
+}

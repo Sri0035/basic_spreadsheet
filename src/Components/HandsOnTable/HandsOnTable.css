@@ -1,0 +1,54 @@
+/*
+  A stylesheet customizing app (custom renderers)
+*/
+
+table.htCore .star {
+  color: #fcb515;
+}
+
+.handsontable .ht__cell:focus {
+  background-color: lightblue;
+}
+
+table.htCore tr.odd td {
+  background: #fafbff;
+}
+
+table.htCore td .progressBar {
+  background: #37bc6c;
+  height: 10px;
+}
+
+table.htCore tr.selected td {
+  background: #edf3fd;
+}
+
+/*
+    A stylesheet customizing Handsontable style
+  */
+
+.handsontable {
+  font-size: 13px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+}
+
+.collapsibleIndicator {
+  text-align: center;
+}
+
+.handsontable .htRight .changeType {
+  margin: 3px 1px 0 13px;
+}
+
+.handsontable th {
+  background-color: rgb(18, 10, 52); /* Change to your preferred color */
+  color: #fff;
+  font-weight: bold;
+}
+
+.handsontable td {
+  background-color: rgb(209, 223, 227); /* Change to your preferred color */
+  color: black;
+}

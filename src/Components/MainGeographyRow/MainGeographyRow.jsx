@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Input, Table } from "semantic-ui-react";
-import SubGeographyRow from "./SubGeographyRow";
+import SubGeographyRow from "../SubGeographyRow/SubGeographyRow";
 
 function sumObjectValues(obj) {
   return Object.values(obj).reduce((total, value) => total + value, 0);
@@ -112,13 +112,12 @@ const MainGeographyRow = ({
                 onClick={() => setNewSubGeoEditable(true)}
                 icon="plus"
               />
-
-              {mainGeo.Geography}
               <Button
                 className="ui icon button"
                 onClick={handleExpandClick}
                 icon={isExpanded ? "chevron down" : "chevron right"}
               />
+              {mainGeo.Geography}
             </>
           )}
         </Table.Cell>
