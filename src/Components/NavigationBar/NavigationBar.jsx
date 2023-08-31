@@ -50,26 +50,6 @@ const NavigationBar = () => {
           <div className="left-sections">
             <div className="sub-section">
               <p>MAIN</p>
-              <NavLink
-                to="/"
-                name={isMobile ? "" : "Dashboard"}
-                iconSrc={Dashboard}
-              />
-              <NavLink
-                to="/city-side"
-                name={isMobile ? "" : "City Side"}
-                iconSrc={CitySideIcon}
-              />
-              <NavLink
-                to="/terminal-side"
-                name={isMobile ? "" : "Terminal Side"}
-                iconSrc={TerminalSideIcon}
-              />
-              <NavLink
-                to="/air-side"
-                name={isMobile ? "" : "Air Side"}
-                iconSrc={AirSideIcon}
-              />
             </div>
             <div className="sub-section">
               <p>OTHERS</p>
