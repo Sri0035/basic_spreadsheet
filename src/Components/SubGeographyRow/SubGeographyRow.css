@@ -40,3 +40,14 @@
   font-size: 14px;
   cursor: pointer;
 }
+
+/* Custom styles for editable input */
+.editable-input {
+  border: none !important; /* Remove the default border */
+  padding: 0; /* Remove padding to match cell padding */
+  font-size: inherit; /* Inherit font size from the parent */
+  background: grey; /* Make the background transparent */
+  width: 100%; /* Expand the input to fill the cell */
+  text-align: center; /* Center-align the content within the cell */
+  outline: none; /* Remove the outline when focused */
+}

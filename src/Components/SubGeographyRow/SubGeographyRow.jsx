@@ -1,4 +1,5 @@
 import React from "react";
+import "./SubGeographyRow.css";
 import { Input, Table } from "semantic-ui-react";
 
 const SubGeographyRow = ({
@@ -55,7 +56,7 @@ const SubGeographyRow = ({
           {productKeys.map((productKey) => (
             <Table.Cell key={productKey}>
               <Input
-                style={{ border: "none", boxShadow: "none", padding: "0px" }}
+                className="editable-input"
                 type="number"
                 value={subGeo[productKey]}
                 onChange={(e) => handleProductChange(e, index, productKey)}

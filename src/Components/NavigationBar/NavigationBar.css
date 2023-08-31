@@ -1,0 +1,143 @@
+NavigationBar.css
+/* LeftNavigationBar.css */
+
+body {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.left-navigation-bar {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f0f0;
+  width: 20%; /* Adjust the width as needed (20% of the screen width) */
+  height: 100vh;
+  border-right: 2px solid var(--color-gray2);
+}
+
+.left-header {
+  display: flex;
+  align-items: center;
+  margin-top: -2.5rem;
+  color: var(--color-blue);
+  background-color: var(--color-gray2);
+  width: 100%;
+  border: 1.1rem solid var(--color-gray2);
+  border-bottom: 1.2px solid var(--color-lightgray);
+  margin-bottom: 5%;
+}
+
+.logo {
+  width: 3.75rem;
+  height: 2.81rem;
+  margin-right: 10px;
+}
+
+.management-system {
+  font-size: 0.7rem;
+  font-weight: 400;
+  text-align: right;
+  padding: 0rem 1.25rem 0rem 0rem;
+  overflow: hidden;
+}
+
+.left-sections {
+  display: flex;
+  flex-direction: column;
+}
+
+.left-sections p {
+  font-weight: bold;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: left;
+  color: var(--color-gray);
+  font-size: 0.875rem;
+}
+
+.left-sections a {
+  color: #000;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+.sub-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings a {
+  color: #000;
+  text-decoration: none;
+}
+
+.user-settings-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: inherit;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  color: var(--color-blue);
+}
+
+.profile-pic {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+@media (min-width: 800px) {
+  .left-navigation-bar {
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+  }
+
+  .management-system {
+    font-size: 1.2rem;
+  }
+
+  .logo {
+    width: 4.75rem;
+    height: 4.81rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .left-header {
+    margin-left: -1.85rem;
+  }
+}
+
+.topNavBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 30%;
+  width: 70%;
+  z-index: 1;
+}
+
+.dashboardHeading {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.timeDate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}

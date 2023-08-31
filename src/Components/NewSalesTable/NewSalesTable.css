@@ -1,4 +1,4 @@
-/* TableComponent.css */
+/* TableComponent.css
 .table-container {
   width: 80%;
   overflow-x: auto;
@@ -97,4 +97,38 @@
 
 .input-field {
   border: none;
+} */
+
+.another-table-container {
+  margin-left: 40px;
+  margin-top: 20px;
+  align-items: center;
+  width: 80%;
+}
+
+.table2 {
+  margin-left: 0px;
+  margin-bottom: 20px;
+}
+.custom-table {
+  margin: 40px;
+  border: none;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.custom-table th,
+.custom-table td {
+  border: none;
+  /* padding: 12px; */
+  font-weight: normal;
+}
+
+.custom-table th {
+  background-color: #f1f1f1;
+  text-align: left;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f0f0f0;
 }
