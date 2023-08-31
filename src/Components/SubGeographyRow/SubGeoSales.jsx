@@ -58,6 +58,7 @@ const SubGeographySales = ({
     <>
       {subGeos.map((subGeo, index) => (
         <Table.Row className="sub-row" key={subGeo.Geography}>
+          <Table.Cell>{}</Table.Cell>
           <Table.Cell>{subGeo.Geography}</Table.Cell>
           <Table.Cell className="table-dropdown-cell">
             <div className="dropdown-container">

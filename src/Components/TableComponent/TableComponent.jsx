@@ -3,6 +3,7 @@ import jsonData from "../../assets/data.json";
 import MainGeographyRow from "../MainGeographyRow/MainGeographyRow";
 import { Button, Input, Table } from "semantic-ui-react";
 import "./TableComponent.css";
+import InfoButton from "../InfoButton/InfoButton";
 
 const TableComponent = () => {
   const [data, setData] = useState(jsonData);
@@ -46,11 +47,17 @@ const TableComponent = () => {
 
   return (
     <div className="table-container">
-      <table className="ui table blue striped">
-        <thead>
-          <tr>
-            <th>
-              {newMainGeoEditable ? (
+      <Table celled>
+        <Table.Header className="header">
+          <Table.Cell colSpan={4}>
+            ARR Target by Product and Geography in FY'23
+            <InfoButton content={"Based on proportions from CRM data"} />
+          </Table.Cell>
+        </Table.Header>
+        <Table.Header>
+          <Table.Row>
+            <Table.Cell>
+              {/* {newMainGeoEditable ? (
                 <Input
                   className="input-field"
                   placeholder="Enter Name"
@@ -65,54 +72,52 @@ const TableComponent = () => {
                   icon="plus"
                   onClick={() => setNewMainGeoEditable(true)}
                 />
-              )}
-              Product/Geography
-            </th>
+              )} */}
+              Geography
+            </Table.Cell>
             {productKeys.map((productKey) => (
               <th key={productKey}>{productKey}</th>
             ))}
             <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((mainGeo, index) => (
-            <MainGeographyRow
-              key={mainGeo.Geography}
-              mainGeo={mainGeo}
-              data={data}
-              setData={setData}
-              productKeys={productKeys}
-              mainGeoTotal={mainGeoTotal}
-              setMainGeoTotal={setMainGeoTotal}
-            />
-          ))}
-          <Table.Row>
-            <Table.Cell>Total</Table.Cell>
-            {productKeys.map((productKey) => (
-              <Table.Cell key={productKey}>
-                {data.reduce((sum, mainGeo) => sum + mainGeo[productKey], 0)}
-              </Table.Cell>
-            ))}
-            <Table.Cell>
-              {data.reduce(
-                (sum, mainGeo) =>
-                  sum +
-                  productKeys.reduce(
-                    (productSum, productKey) =>
-                      mainGeo[productKey] + productSum,
-                    0
-                  ),
-                0
-              )}
-            </Table.Cell>
           </Table.Row>
-        </tbody>
-      </table>
-      <div className="adjust-button-container">
+        </Table.Header>
+
+        {data.map((mainGeo, index) => (
+          <MainGeographyRow
+            key={mainGeo.Geography}
+            mainGeo={mainGeo}
+            data={data}
+            setData={setData}
+            productKeys={productKeys}
+            mainGeoTotal={mainGeoTotal}
+            setMainGeoTotal={setMainGeoTotal}
+          />
+        ))}
+        <Table.Row>
+          <Table.Cell>Total</Table.Cell>
+          {productKeys.map((productKey) => (
+            <Table.Cell key={productKey}>
+              {data.reduce((sum, mainGeo) => sum + mainGeo[productKey], 0)}
+            </Table.Cell>
+          ))}
+          <Table.Cell>
+            {data.reduce(
+              (sum, mainGeo) =>
+                sum +
+                productKeys.reduce(
+                  (productSum, productKey) => mainGeo[productKey] + productSum,
+                  0
+                ),
+              0
+            )}
+          </Table.Cell>
+        </Table.Row>
+      </Table>
+      {/* <div className="adjust-button-container">
         <Button className="ui blue button" onClick={addProductColumn}>
           Add New Product Column
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -1,11 +1,16 @@
 /* TwoTables.css */
 .another-table-container {
-  margin: 40px;
+  margin-left: 40px;
+  margin-top: 20px;
   width: 80%;
-  text-align: center;
 }
 
+.table2 {
+  margin-left: 0px;
+  margin-bottom: 20px;
+}
 .custom-table {
+  margin: 40px;
   border: none;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -14,7 +19,7 @@
 .custom-table th,
 .custom-table td {
   border: none;
-  padding: 12px;
+  /* padding: 12px; */
   font-weight: normal;
 }
 
@@ -25,4 +30,49 @@
 
 .custom-table tbody tr:hover {
   background-color: #f0f0f0;
+}
+
+.hide {
+  display: none;
+}
+
+.hover-function:hover + .hide {
+  display: block;
+}
+
+.info-container {
+  position: relative;
+  display: inline-block;
+}
+
+.info-button {
+  background-color: transparent;
+  border: none;
+  color: blue;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.info-tooltip {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  width: 200px;
+  text-align: center;
+}
+
+.info-container:hover .info-tooltip {
+  display: block;
+}
+
+.header {
+  column-span: all;
+  background-color: #3498db;
 }

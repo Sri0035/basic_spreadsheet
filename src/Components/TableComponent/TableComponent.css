@@ -98,3 +98,9 @@
 .input-field {
   border: none;
 }
+
+.header {
+  column-span: all;
+  background-color: #3498db;
+  text-align: center;
+}
