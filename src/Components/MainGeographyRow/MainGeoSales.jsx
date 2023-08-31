@@ -102,6 +102,13 @@ const MainGeographySales = ({
     <React.Fragment key={mainGeo.Geography}>
       <Table.Row className={`row ${isExpanded ? "expanded" : ""}`}>
         <Table.Cell>
+          <Button
+            className="ui icon button"
+            onClick={handleExpandClick}
+            icon={isExpanded ? "chevron down" : "chevron right"}
+          />
+        </Table.Cell>
+        <Table.Cell>
           {newSubGeoEditable ? (
             <Input
               placeholder="Enter Name"
@@ -112,38 +119,15 @@ const MainGeographySales = ({
             />
           ) : (
             <>
-              <Button
+              {/* <Button
                 className="ui icon button"
                 onClick={() => setNewSubGeoEditable(true)}
                 icon="plus"
-              />
-              <Button
-                className="ui icon button"
-                onClick={handleExpandClick}
-                icon={isExpanded ? "chevron down" : "chevron right"}
-              />
+              /> */}
+
               {mainGeo.Geography}
             </>
           )}
-        </Table.Cell>
-        <Table.Cell className="table-dropdown-cell">
-          <div className="dropdown-container">
-            <Dropdown
-              className="dropdown"
-              placeholder="Select Product"
-              options={[
-                { key: "all", value: "All Products", text: "All Products" },
-                ...products.map((product) => ({
-                  key: product,
-                  value: product,
-                  text: product,
-                })),
-              ]}
-              selection
-              value={selectedProduct}
-              onChange={handleProductChange}
-            />
-          </div>
         </Table.Cell>
 
         {productKeys.map((productKey) => (

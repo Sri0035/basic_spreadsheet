@@ -1,0 +1,9 @@
+.editable-cell {
+  width: 100px; /* Adjust the width as needed */
+  max-width: 100%; /* Ensure the cell doesn't exceed its container */
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflowing content */
+  text-overflow: ellipsis; /* Show ellipsis for overflow */
+  /* Add borders for better visibility */
+  padding: 2px 4px; /* Add padding for visual spacing */
+}

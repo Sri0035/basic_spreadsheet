@@ -1,10 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { Button, Input, Table } from "semantic-ui-react";
+import { IconButton } from "@mui/material";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import SubGeographyRow from "../SubGeographyRow/SubGeographyRow";
+import "./MainGeographyRow.css";
 
 function sumObjectValues(obj) {
   return Object.values(obj).reduce((total, value) => total + value, 0);
 }
+
+const EditableCell = ({ content, onChange }) => {
+  const [editableContent, setEditableContent] = useState(content);
+
+  const handleContentChange = (event) => {
+    const newContent = event.target.textContent;
+    setEditableContent(newContent);
+    onChange(newContent);
+  };
+
+  return (
+    <div
+      className="editable-cell"
+      contentEditable
+      onBlur={handleContentChange}
+      dangerouslySetInnerHTML={{ __html: editableContent }}
+    />
+  );
+};
 
 const MainGeographyRow = ({
   mainGeo,
@@ -27,8 +49,6 @@ const MainGeographyRow = ({
         0
       );
     });
-
-    console.log(productTotal);
 
     return productTotal;
   };
@@ -93,6 +113,56 @@ const MainGeographyRow = ({
     setAdjustedTotal(calculateAdjustedTotal(mainGeo));
   }, [mainGeo]);
 
+  const handleTotalChange = (event) => {
+    const newData = [
+      {
+        Geography: "North America",
+        "Product 1": 95000000,
+        "Product 2": 2500000,
+
+        sub_geographies: [
+          {
+            Geography: "United States",
+            "Product 1": 7500000,
+            "Product 2": 1900000,
+          },
+          {
+            Geography: "Canada",
+            "Product 1": 2000000,
+            "Product 2": 600000,
+          },
+        ],
+      },
+      {
+        Geography: "Europe",
+        "Product 1": 4500000,
+        "Product 2": 1000000,
+
+        sub_geographies: [
+          {
+            Geography: "United Kingdom",
+            "Product 1": 1400000,
+            "Product 2": 175000,
+          },
+          {
+            Geography: "Germany",
+            "Product 1": 1700000,
+            "Product 2": 650000,
+          },
+          {
+            Geography: "France",
+            "Product 1": 1400000,
+            "Product 2": 175000,
+          },
+        ],
+      },
+    ];
+
+    setData(newData);
+
+    // You might also want to update individual products if needed
+  };
+
   return (
     <React.Fragment key={mainGeo.Geography}>
       <Table.Row className={`row ${isExpanded ? "expanded" : ""}`}>
@@ -107,11 +177,11 @@ const MainGeographyRow = ({
             />
           ) : (
             <>
-              <Button
+              {/* <Button
                 className="ui icon button"
                 onClick={() => setNewSubGeoEditable(true)}
                 icon="plus"
-              />
+              /> */}
               <Button
                 className="ui icon button"
                 onClick={handleExpandClick}
@@ -124,13 +194,31 @@ const MainGeographyRow = ({
 
         {productKeys.map((productKey) => (
           <Table.Cell key={productKey}>
-            {productKey in mainGeo
-              ? mainGeo[productKey]
-              : calculateMainGeoTotal(mainGeo)}
+            <EditableCell
+              content={mainGeo[productKey]}
+              onChange={(newContent) => {
+                const newValue = parseInt(newContent, 10) || 0;
+                const updatedMainGeo = {
+                  ...mainGeo,
+                  [productKey]: newValue,
+                };
+                setData((prevData) =>
+                  prevData.map((dataMainGeo) =>
+                    dataMainGeo === mainGeo ? updatedMainGeo : dataMainGeo
+                  )
+                );
+              }}
+            />
           </Table.Cell>
         ))}
         <Table.Cell>
-          {sumObjectValues(calculateMainGeoTotal(mainGeo))}
+          <EditableCell
+            content={sumObjectValues(calculateMainGeoTotal(mainGeo))}
+          />
+
+          <IconButton onClick={handleTotalChange}>
+            <CheckCircleIcon />
+          </IconButton>
         </Table.Cell>
       </Table.Row>
       {isExpanded && (
