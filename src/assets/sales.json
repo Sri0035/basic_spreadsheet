@@ -1,0 +1,136 @@
+[
+  {
+    "Geography": "North America",
+    "NewBusiness": 12000000,
+    "Existing": {
+      "Churn": -2000000,
+      "Upsell": 5000000
+    },
+    "Total": 15000000,
+    "Countries": [
+      {
+        "Country": "United States",
+        "NewBusiness": 9600000,
+        "Existing": {
+          "Churn": -1600000,
+          "Upsell": 4000000
+        },
+        "Total": 12000000
+      },
+      {
+        "Country": "Canada",
+        "NewBusiness": 2400000,
+        "Existing": {
+          "Churn": -400000,
+          "Upsell": 1000000
+        },
+        "Total": 3000000
+      }
+    ]
+  },
+  {
+    "Geography": "Europe",
+    "NewBusiness": 5000000,
+    "Existing": {
+      "Churn": -1000000,
+      "Upsell": 750000
+    },
+    "Total": 4750000,
+    "Countries": [
+      {
+        "Country": "United Kingdom",
+        "NewBusiness": 1750000,
+        "Existing": {
+          "Churn": -350000,
+          "Upsell": 262500
+        },
+        "Total": 1662500
+      },
+      {
+        "Country": "Germany",
+        "NewBusiness": 1500000,
+        "Existing": {
+          "Churn": -300000,
+          "Upsell": 225000
+        },
+        "Total": 1425000
+      },
+      {
+        "Country": "France",
+        "NewBusiness": 1750000,
+        "Existing": {
+          "Churn": -350000,
+          "Upsell": 262500
+        },
+        "Total": 1662500
+      }
+    ]
+  },
+  {
+    "Geography": "APAC",
+    "NewBusiness": 4000000,
+    "Existing": {
+      "Churn": -1000000,
+      "Upsell": 1250000
+    },
+    "Total": 4250000,
+    "Countries": [
+      {
+        "Country": "India",
+        "NewBusiness": 2000000,
+        "Existing": {
+          "Churn": -500000,
+          "Upsell": 625000
+        },
+        "Total": 2125000
+      },
+      {
+        "Country": "Singapore",
+        "NewBusiness": 1000000,
+        "Existing": {
+          "Churn": -250000,
+          "Upsell": 312500
+        },
+        "Total": 1062500
+      },
+      {
+        "Country": "Australia",
+        "NewBusiness": 1000000,
+        "Existing": {
+          "Churn": -250000,
+          "Upsell": 312500
+        },
+        "Total": 1062500
+      }
+    ]
+  },
+  {
+    "Geography": "MEA",
+    "NewBusiness": 700000,
+    "Existing": {
+      "Churn": -200000,
+      "Upsell": 500000
+    },
+    "Total": 1000000,
+    "Countries": [
+      {
+        "Country": "United Emirates",
+        "NewBusiness": 350000,
+        "Existing": {
+          "Churn": -100000,
+          "Upsell": 250000
+        },
+        "Total": 500000
+      },
+      {
+        "Country": "South Africa",
+        "NewBusiness": 350000,
+        "Existing": {
+          "Churn": -100000,
+          "Upsell": 250000
+        },
+        "Total": 500000
+      }
+    ]
+  }
+]
