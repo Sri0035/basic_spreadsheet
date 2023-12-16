@@ -116,7 +116,7 @@ const Tablerow = ({ row }) => {
 const ARRExist = () => {
   const [changeData, setChangeData] = useState(data);
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
